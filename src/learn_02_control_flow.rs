@@ -8,16 +8,16 @@ pub fn basic_if_else(){
     }
 }
 
-pub fn match_example(member: u8){
-    let team_7 = match member {
-        1 => "Kakashi",
-        2 => "Naruto",
-        3 => "Sasuke",
-        4 => "Sakura",
-        _ => "Invalid member",
+pub fn match_example(blockchain: u8){
+    let ex_blockchain = match blockchain {
+        1 => "Solana",
+        2 => "Ethereum",
+        3 => "Polygon",
+        4 => "Optimism",
+        _ => "Invalid blockchain",
     };
 
-    println!("Member Name: {}", team_7);
+    println!("Member Name: {}", ex_blockchain);
 }
 
 pub fn while_loop_example(){
