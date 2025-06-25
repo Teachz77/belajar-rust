@@ -1,22 +1,37 @@
-use std::io;
+use std::{cmp::Ordering, io};
 use rand::Rng;
 
 pub fn guess_number(){
     println!("Guess the number");
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
+    println!("The secret number is {}", secret_number);
 
-    println!("Please input your number");
+    loop{
+        println!("Please input your number");
 
-    println!("The secret number: {secret_number}");
+        let mut guess: String = String::new();
 
-    let mut guess: String = String::new();
+        io::stdin()
+        .read_line(&mut guess)
+        .expect("Read the line");
 
-    io::stdin()
-    .read_line(&mut guess)
-    .expect("Read the line");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
-    println!("You guessed: {}", guess);
+        println!("You guessed: {}", guess);
+
+        match guess.cmp(&secret_number){
+            Ordering::Less => println!("Too small"),
+            Ordering::Greater => println!("Too Big"),
+            Ordering::Equal => {
+                println!("Got it");
+                break;
+            },
+        }
+    }
 }
 
 pub fn primitive_data_types(){
@@ -72,7 +87,7 @@ pub fn variable_shadowing_and_conversion(){
 }
 
 pub fn mutability_example(){
-    let token_supply: i32 = 1_000_000;
+    // let token_supply: i32 = 1_000_000;
 
     let mut user_balance: i32 = 500;
     println!("Before transaction: {}", user_balance);
